@@ -34,6 +34,7 @@ class GriptapeSettings:
 
         # Get the users directory
         users_dir = os.path.dirname(user_manager.get_users_file())
+        os.makedirs(users_dir, exist_ok=True)
         # Use the default user directory (usually the first one we find)
         user_dirs = [
             d
@@ -41,10 +42,12 @@ class GriptapeSettings:
             if os.path.isdir(os.path.join(users_dir, d))
         ]
         if not user_dirs:
-            # Create a users dir if it doesn't exist
-            user_dirs[0] = os.path.join(self.comfyui_dir, "user")
-            os.mkdir(user_dirs[0])
-            print(f"No user directories found.. creating {user_dirs[0]}")
+            # Ensure there is at least one profile directory so API keys can be stored
+            default_user_dir_name = "user"
+            default_user_dir = os.path.join(users_dir, default_user_dir_name)
+            os.makedirs(default_user_dir, exist_ok=True)
+            user_dirs = [default_user_dir_name]
+            print(f"No user directories found.. creating {default_user_dir}")
         # Get the settings file path
         self.settings_file = os.path.join(
             users_dir, user_dirs[0], "comfy.settings.json"

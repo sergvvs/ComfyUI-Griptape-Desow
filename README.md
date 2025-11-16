@@ -241,6 +241,10 @@ To resolve this, you must make sure Griptape is running with the appropriate ver
 * In the terminal, go to your ComfyUI directory and type: `python -m pip install griptape -U`
 * Reach out on [Discord](https://discord.gg/fexDeKxf) and ask for help.
 
+### Missing default ComfyUI user profile
+
+If you see `IndexError: list assignment index out of range` while creating Griptape drivers, ComfyUI most likely hasn't created a default profile directory yet. Recent builds now auto-create `ComfyUI/user/comfy.settings.json` when absent, but you can also fix older installs manually by creating the `user` subfolder next to `users.json` and restarting ComfyUI.
+
 ### StabilityMatrix
 
 If you are using [StabilityMatrix](https://github.com/LykosAI/StabilityMatrix) to run ComfyUI, you may find that after you install Griptape you get an error like the following:

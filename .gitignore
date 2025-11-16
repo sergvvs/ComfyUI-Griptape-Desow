@@ -163,3 +163,6 @@ griptape_config.json
 pyproject_old.toml
 pyproject_pub.toml
 .DS_Store
+
+
+.cursorrules
